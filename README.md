@@ -1,4 +1,4 @@
-# 💬 ChatApp — Real-Time Friend-Based Chat
+# 💬 BhaiLog — Real-Time Friend-Based Chat-app
 
 A production-ready MERN stack chat application with Socket.io real-time messaging.
 
