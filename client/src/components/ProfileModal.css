@@ -1,0 +1,148 @@
+/* components/ProfileModal.css */
+.pm-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 500; backdrop-filter: blur(6px);
+  padding: 16px;
+}
+.pm-overlay.dp-full { z-index: 600; }
+
+.pm-modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px 28px 28px;
+  width: 100%; max-width: 400px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  animation: cardIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  max-height: 90vh; overflow-y: auto;
+}
+
+.pm-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--bg-tertiary); border: 1px solid var(--border);
+  color: var(--text-secondary); font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.15s;
+}
+.pm-close:hover { background: var(--bg-hover); }
+
+/* DP */
+.pm-dp-section { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 20px; }
+.pm-dp-wrap {
+  position: relative; cursor: pointer; width: 96px; height: 96px;
+}
+.pm-dp { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); }
+.pm-dp-ph {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--accent-gradient); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem; font-weight: 700;
+}
+.pm-dp-loading {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.pm-dp-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.pm-dp-btn {
+  padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+  border: 1.5px solid var(--accent); color: var(--accent); background: none;
+  cursor: pointer; transition: background 0.15s;
+}
+.pm-dp-btn:hover { background: rgba(108,99,255,0.08); }
+.pm-dp-btn.danger { border-color: var(--danger); color: var(--danger); }
+.pm-dp-btn.danger:hover { background: rgba(239,68,68,0.08); }
+.pm-dp-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Info */
+.pm-info { text-align: center; margin-bottom: 20px; }
+.pm-name { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+.pm-uid { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 4px; }
+.pm-joined { color: var(--text-muted); font-size: 0.78rem; }
+
+/* About */
+.pm-about { margin-bottom: 16px; }
+.pm-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); display: block; margin-bottom: 8px; }
+.pm-about-display {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-tertiary); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 14px; cursor: pointer; gap: 8px;
+  transition: background 0.15s;
+}
+.pm-about-display:hover { background: var(--bg-hover); }
+.pm-about-display p { color: var(--text-secondary); font-size: 0.875rem; flex: 1; }
+.pm-textarea {
+  width: 100%; padding: 12px; background: var(--bg-tertiary);
+  border: 1.5px solid var(--input-border); border-radius: 12px;
+  font-size: 0.875rem; color: var(--text-primary); resize: none; outline: none;
+  transition: border-color 0.2s; line-height: 1.5;
+}
+.pm-textarea:focus { border-color: var(--input-focus); }
+.pm-about-btns { display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; }
+
+/* Buttons */
+.pm-btn {
+  padding: 9px 20px; border-radius: 10px; font-size: 0.875rem;
+  font-weight: 600; border: none; cursor: pointer; transition: opacity 0.15s;
+}
+.pm-btn.primary { background: var(--accent-gradient); color: #fff; }
+.pm-btn.ghost { background: var(--bg-tertiary); color: var(--text-secondary); border: 1px solid var(--border); }
+.pm-btn.danger { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
+.pm-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.pm-btn:hover:not(:disabled) { opacity: 0.88; }
+
+/* Mobile logout — only shows on mobile */
+.pm-logout-mobile {
+  display: none;
+  width: 100%; padding: 12px;
+  background: var(--bg-tertiary); border: 1.5px solid var(--border);
+  border-radius: 12px; color: var(--text-secondary);
+  font-size: 0.9rem; font-weight: 600;
+  align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 10px; cursor: pointer; transition: background 0.15s;
+}
+.pm-logout-mobile:hover { background: var(--bg-hover); }
+@media (max-width: 768px) { .pm-logout-mobile { display: flex; } }
+
+/* Delete */
+.pm-delete-btn {
+  width: 100%; padding: 12px;
+  background: none; border: 1.5px solid var(--danger);
+  color: var(--danger); border-radius: 12px;
+  font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.pm-delete-btn:hover { background: rgba(239,68,68,0.08); }
+
+/* Full DP */
+.pm-full-dp {
+  width: min(380px, 85vw); height: min(380px, 85vw);
+  border-radius: 50%; object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.3);
+  animation: cardIn 0.2s ease;
+}
+
+/* Delete modal */
+.pm-delete-modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 24px; padding: 36px 28px;
+  max-width: 360px; width: 90%;
+  text-align: center; box-shadow: var(--shadow-lg);
+  animation: cardIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.pm-delete-modal h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+.pm-delete-modal p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 8px; line-height: 1.5; }
+.pm-delete-hint { font-size: 0.875rem !important; margin-top: 12px !important; }
+.pm-delete-input {
+  width: 100%; padding: 11px 14px;
+  background: var(--bg-input); border: 1.5px solid var(--input-border);
+  border-radius: 10px; font-size: 0.9rem; color: var(--text-primary); outline: none;
+  margin: 10px 0 18px; transition: border-color 0.2s;
+}
+.pm-delete-input:focus { border-color: var(--danger); }
+.pm-delete-actions { display: flex; gap: 10px; justify-content: center; }

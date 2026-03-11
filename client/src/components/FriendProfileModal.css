@@ -1,0 +1,53 @@
+/* components/FriendProfileModal.css */
+.fpm-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 500; backdrop-filter: blur(6px);
+  padding: 16px;
+}
+.fpm-overlay.dp-full { z-index: 600; }
+
+.fpm-modal {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 24px; padding: 36px 28px 28px;
+  width: 100%; max-width: 360px;
+  text-align: center; position: relative;
+  box-shadow: var(--shadow-lg);
+  animation: cardIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.fpm-dp-wrap { margin: 0 auto 10px; cursor: pointer; width: 96px; height: 96px; }
+.fpm-dp { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); }
+.fpm-dp-ph {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--accent-gradient); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem; font-weight: 700; margin: 0 auto;
+}
+
+.fpm-status { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 10px; }
+.fpm-dot { width: 9px; height: 9px; border-radius: 50%; }
+.fpm-dot.online { background: var(--online); }
+.fpm-dot.offline { background: var(--text-muted); }
+.fpm-status-text { font-size: 0.8rem; color: var(--text-muted); }
+
+.fpm-name { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+.fpm-uid { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 4px; }
+.fpm-joined { color: var(--text-muted); font-size: 0.78rem; margin-bottom: 16px; }
+.fpm-loading { color: var(--text-muted); font-size: 0.875rem; padding: 20px 0; }
+
+.fpm-about {
+  background: var(--bg-tertiary); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px; text-align: left; margin-bottom: 16px;
+}
+.fpm-about label {
+  font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--text-muted); display: block; margin-bottom: 4px;
+}
+.fpm-about p { font-size: 0.875rem; color: var(--text-secondary); }
+
+.fpm-actions { display: flex; flex-direction: column; gap: 10px; }
+.pm-btn.danger-border { border: 1.5px solid var(--danger) !important; color: var(--danger) !important; }
+.pm-btn.danger-border:hover:not(:disabled) { background: rgba(239,68,68,0.08) !important; opacity: 1 !important; }

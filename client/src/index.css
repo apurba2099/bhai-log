@@ -1,0 +1,118 @@
+/* src/index.css — CSS custom properties for light/dark themes */
+
+/* ── LIGHT THEME ── */
+:root,
+[data-theme="light"] {
+  --bg-primary: #f0f2f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f7f8fa;
+  --bg-hover: #f0f4ff;
+  --bg-input: #f0f2f5;
+
+  --accent: #6c63ff;
+  --accent-dark: #5a52d5;
+  --accent-gradient: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+  --accent-sidebar: linear-gradient(160deg, #1e1b4b 0%, #312e81 60%, #4c1d95 100%);
+
+  --text-primary: #1a1a2e;
+  --text-secondary: #555;
+  --text-muted: #9ca3af;
+  --text-on-accent: #ffffff;
+
+  --border: #e5e7eb;
+  --border-light: #f0f0f0;
+
+  --bubble-mine: #dcf8c6;
+  --bubble-mine-text: #1a1a2e;
+  --bubble-theirs: #ffffff;
+  --bubble-theirs-text: #1a1a2e;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.18);
+
+  --online: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+
+  --msg-bg: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c7d2fe' fill-opacity='0.25'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+  --scrollbar: #d1d5db;
+  --scrollbar-hover: #9ca3af;
+
+  --input-border: #e5e7eb;
+  --input-focus: #6c63ff;
+}
+
+/* ── DARK THEME ── */
+[data-theme="dark"] {
+  --bg-primary: #0f0f14;
+  --bg-secondary: #1a1a26;
+  --bg-tertiary: #22222f;
+  --bg-hover: #2a2a3d;
+  --bg-input: #22222f;
+
+  --accent: #818cf8;
+  --accent-dark: #6366f1;
+  --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+  --accent-sidebar: linear-gradient(160deg, #0d0d1a 0%, #1a1a2e 60%, #2d1b69 100%);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-on-accent: #ffffff;
+
+  --border: #2e2e45;
+  --border-light: #252535;
+
+  --bubble-mine: #2d4a3e;
+  --bubble-mine-text: #dcf8c6;
+  --bubble-theirs: #252535;
+  --bubble-theirs-text: #f1f5f9;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.6);
+
+  --online: #22c55e;
+  --danger: #f87171;
+  --warning: #fbbf24;
+
+  --msg-bg: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234338ca' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+  --scrollbar: #2e2e45;
+  --scrollbar-hover: #4a4a65;
+
+  --input-border: #2e2e45;
+  --input-focus: #818cf8;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select { font-family: inherit; }
+a { text-decoration: none; }
+img { max-width: 100%; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); }
+
+/* ── GLOBAL TRANSITIONS ── */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

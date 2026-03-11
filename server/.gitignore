@@ -1,0 +1,7 @@
+node_modules/
+.env
+
+# User uploaded files — never commit these to git
+# The uploads/ folder is created automatically by server.js on startup
+uploads/*
+!uploads/.gitkeep

@@ -1,0 +1,47 @@
+/* pages/Home.css */
+.home-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.home-sidebar {
+  width: 360px;
+  min-width: 320px;
+  height: 100vh;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  transition: transform 0.3s ease;
+}
+
+.home-chat {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .home-layout { position: relative; }
+
+  .home-sidebar {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    min-width: unset;
+    z-index: 20;
+    transform: translateX(0);
+  }
+  .home-sidebar.slide-out { transform: translateX(-100%); pointer-events: none; }
+
+  .home-chat {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    z-index: 20;
+    transform: translateX(0);
+  }
+  .home-chat.slide-out { transform: translateX(100%); pointer-events: none; }
+}

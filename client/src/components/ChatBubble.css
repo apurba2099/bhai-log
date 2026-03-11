@@ -1,0 +1,7 @@
+/* components/ChatBubble.css */
+.chat-link {
+  color: #0f3460;
+  text-decoration: underline;
+  word-break: break-all;
+}
+.chat-link:hover { color: #533483; }
