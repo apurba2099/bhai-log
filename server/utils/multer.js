@@ -1,34 +1,36 @@
-// utils/multer.js — Multer config for handling file uploads
+// utils/multer.js — Multer + Cloudinary storage
 const multer = require("multer");
-const path = require("path");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
-// Store files in /uploads with original name + timestamp
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads")); // Save to uploads folder
-  },
-  filename: (req, file, cb) => {
-    const uniqueName = `${Date.now()}-${file.originalname.replace(/\s+/g, "_")}`; // Remove spaces
-    cb(null, uniqueName);
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => {
+    let folder = "bhailog/files";
+    let resource_type = "auto";
+
+    if (file.mimetype.startsWith("image/"))       folder = "bhailog/images";
+    else if (file.mimetype.startsWith("video/"))  folder = "bhailog/videos";
+    else if (file.mimetype === "application/pdf") folder = "bhailog/pdfs";
+    else if (file.mimetype === "text/plain")      folder = "bhailog/texts";
+
+    return { folder, resource_type, use_filename: true, unique_filename: true };
   },
 });
 
-// File type filter — allow images, videos, PDFs, text files
 const fileFilter = (req, file, cb) => {
-  const allowed = ["image/jpeg", "image/png", "image/gif", "image/webp",
-                   "video/mp4", "video/webm",
-                   "application/pdf", "text/plain"];
-  if (allowed.includes(file.mimetype)) {
-    cb(null, true); // Accept file
-  } else {
-    cb(new Error("Unsupported file type"), false); // Reject file
-  }
+  const allowed = [
+    "image/jpeg", "image/png", "image/gif", "image/webp",
+    "video/mp4", "video/webm",
+    "application/pdf", "text/plain",
+  ];
+  allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error("Unsupported file type"), false);
 };
 
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB max per file
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
 });
 
-module.exports = upload;
+module.exports = { upload, cloudinary };
