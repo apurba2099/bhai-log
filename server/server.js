@@ -17,20 +17,24 @@ connectDB();
 const app = express();
 const httpServer = http.createServer(app);
 
-// Socket.io
+const allowedOrigin = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.replace(/\/$/, "") // strip trailing slash
+  : true;
+
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.NODE_ENV === "production" ? process.env.CLIENT_URL : true,
+    origin: allowedOrigin,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
 });
 
-// CORS for REST API
-app.use(cors({
-  origin: process.env.NODE_ENV === "production" ? process.env.CLIENT_URL : true,
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true,
+  }),
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -38,8 +42,8 @@ app.use(express.urlencoded({ extended: true }));
 // Health check
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
-app.use("/api/auth",     authRoutes);
-app.use("/api/users",    userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoutes);
 
 app.use(errorHandler);
